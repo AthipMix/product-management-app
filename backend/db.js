@@ -17,11 +17,13 @@ dotenv.config();
 //   dialect: "postgres",
 //   logging: false,
 // });
+
 const sequelize = new Sequelize("product_db", "dev_user", "dev_password", {
   host: "postgres-db",
   port: 5432,
   dialect: "postgres",
   logging: false,
+
 //   dialectOptions: {
 //     ssl: { require: true, rejectUnauthorized: false },
 //   },
