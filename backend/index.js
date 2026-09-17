@@ -12,10 +12,12 @@ app.use(express.json());
 
 connectDB();
 
-app.get("/", (req, res)=>{
-    return res.status(200).send("<h> Welcome to Restful API Product Management App</h>")
+app.get("/", (req, res) => {
+  return res
+    .status(200)
+    .send("<h> Welcome to Restful API Product Management App</h>");
 });
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running on: http://localhost:${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server is running on: http://localhost:${PORT}`);
+});

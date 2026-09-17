@@ -22,9 +22,9 @@ const sequelize = new Sequelize("product_db", "dev_user", "dev_password", {
   port: 5432,
   dialect: "postgres",
   logging: false,
-//   dialectOptions: {
-//     ssl: { require: true, rejectUnauthorized: false },
-//   },
+  //   dialectOptions: {
+  //     ssl: { require: true, rejectUnauthorized: false },
+  //   },
 });
 
 // const sequelize = new Sequelize(databaseUrl, {
