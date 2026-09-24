@@ -1,26 +1,20 @@
-import { useState } from "react";
-import heroImg from "./assets/hero.png";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import "./App.css";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router"
+
+import AddProductPage from "./pages/AddProductPage.jsx"
+import EditProductPage from "./pages/EditProductPage.jsx"
+import ProductPage from "./pages/ProductPage.jsx"
 
 function App() {
-
   return (
-    <>
-      <div className="card card-border bg-base-100 w-96 shadow-2xl">
-        <div className="card-body">
-          <h2 className="card-title">Card Title</h2>
-          <p className="text-3xl font-bold underline">
-            Hello Product Management
-          </p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/product" replace />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/new" element={<AddProductPage />} />
+        <Route path="/product/:id/edit" element={<EditProductPage />} />
+        <Route path="*" element={<Navigate to="/product" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
-
+};
 export default App;
