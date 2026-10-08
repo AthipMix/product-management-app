@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import ProductFormPage from "./ProductFormPage";
 
 const EditProductPage = () => {
-  return (
-    <div>EditProductPage</div>
-  )
-}
+  return <ProductFormPage isEditing />;
+};
 
-export default EditProductPage
+export default EditProductPage;
