@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
+import { ArrowLeft } from "lucide-react";
 import PageState from "../components/PageState.jsx";
 import ProductForm from "../components/ProductForm.jsx";
 import ProductHeader from "../components/ProductHeader.jsx";
@@ -63,7 +64,7 @@ function ProductFormPage({ isEditing = false }) {
         await createProduct(product);
       }
       await showSuccess(isEditing ? "แก้ไขสินค้าสำเร็จ" : "เพิ่มสินค้าสำเร็จ");
-      navigate("/products");
+      navigate("/product");
     } catch (requestError) {
       showError(requestError);
     } finally {
@@ -72,9 +73,29 @@ function ProductFormPage({ isEditing = false }) {
   };
 
   return (
-    <main className="min-h-screen px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-6">
-        <ProductHeader />
+    <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-6">
+        <ProductHeader
+          title={isEditing ? "แก้ไขข้อมูลสินค้า" : "เพิ่มรายการสินค้าใหม่"}
+          subtitle={
+            isEditing
+              ? `กำลังแก้ไขข้อมูลสินค้ารหัส #${id}`
+              : "กรอกข้อมูลเพื่อเพิ่มรายการสินค้าใหม่เข้าสู่คลังสินค้า"
+          }
+          badge={isEditing ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่"}
+        />
+
+        {/* Back navigation button */}
+        <div className="flex items-center justify-between">
+          <Link
+            to="/product"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-2 text-sm font-medium text-slate-600 shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:text-sky-600 hover:border-sky-200"
+          >
+            <ArrowLeft className="size-4" />
+            <span>กลับไปยังหน้ารายการสินค้า</span>
+          </Link>
+        </div>
+
         <PageState loading={loading} error={error} />
         {!loading && !error && (
           <ProductForm
@@ -89,7 +110,7 @@ function ProductFormPage({ isEditing = false }) {
             onDescriptionChange={setDescription}
             onImageChange={setImage}
             onSubmit={handleSubmit}
-            onCancel={() => navigate("/products")}
+            onCancel={() => navigate("/product")}
           />
         )}
       </div>

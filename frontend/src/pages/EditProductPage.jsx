@@ -1,4 +1,3 @@
-import React from "react";
 import ProductFormPage from "./ProductFormPage";
 
 const EditProductPage = () => {
