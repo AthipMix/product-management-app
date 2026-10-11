@@ -1,11 +1,14 @@
-const API_URL = `${import.meta.env.VITE_API_URL}/api/products`;
+const BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
+const API_URL = `${BASE_URL}/api/products`;
 
 const request = async (url, option) => {
   const response = await fetch(url, option);
+
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || "เกิดข้อผิดพลาดในการเชื่อมต่อ");
   }
+
   return response.json();
 };
 
@@ -19,6 +22,7 @@ const createProduct = (product) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(product),
   });
+
 const updateProduct = (id, product) =>
   request(`${API_URL}/${id}`, {
     method: "PUT",
@@ -31,4 +35,10 @@ const deleteProduct = (id) =>
     method: "DELETE",
   });
 
-export { getProduct, getProducts, createProduct, updateProduct, deleteProduct };
+export {
+  getProduct,
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
